@@ -7,7 +7,7 @@
 <title data-id="th-modified">Power Unlimited — Practice Management & Medical Billing Solutions</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500;1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500;1,600&display=swap" rel="stylesheet">
 <style>
   :root{
     --paper:#fbfaf6;
@@ -33,7 +33,7 @@
     font-family:'Plus Jakarta Sans', sans-serif; -webkit-font-smoothing:antialiased;
     overflow-x:hidden;
   }
-  h1,h2,h3,.display{ font-family:'Plus Jakarta Sans', sans-serif; font-weight:600; letter-spacing:-0.01em; }
+  h1,h2,h3,.display{ font-family:'Lora', serif; font-weight:600; letter-spacing:-0.01em; }
   .mono{ font-family:'Plus Jakarta Sans', sans-serif; letter-spacing:0.01em; }
   a{ color:inherit; text-decoration:none; }
   .wrap{ max-width:1200px; margin:0 auto; padding:0 32px; }
@@ -86,7 +86,7 @@
   .btn-secondary:hover{ border-color:var(--blue); }
   .trust-row{ display:flex; gap:28px; flex-wrap:wrap; }
   .trust-item{ display:flex; flex-direction:column; }
-  .trust-item .num{ font-family:'Plus Jakarta Sans', sans-serif; font-weight:600; font-size:23px; color:var(--ink); }
+  .trust-item .num{ font-family:'Lora', serif; font-weight:600; font-size:23px; color:var(--ink); }
   .trust-item .lbl{ font-size:12.5px; color:var(--ink-faint); margin-top:2px; }
 
   /* hero visual */
@@ -102,17 +102,16 @@
     box-shadow:var(--shadow-lg); padding:18px 20px;
   }
   .dash-main{ top:64px; left:38px; right:38px; }
-  .dash-main .row-top{ display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; }
-  .dash-main .row-top .dot{ width:9px; height:9px; border-radius:50%; background:var(--mint); box-shadow:0 0 0 3px var(--mint-soft); }
-  .dash-main .title{ font-size:13px; font-weight:600; color:var(--ink-dim); }
-  .bar-track{ height:8px; background:var(--sky); border-radius:99px; overflow:hidden; margin-bottom:10px; }
-  .bar-fill{ height:100%; border-radius:99px; background:linear-gradient(90deg, var(--blue), var(--mint)); }
-  .stat-mini-row{ display:flex; gap:14px; margin-top:18px; }
-  .stat-mini{ flex:1; background:var(--sky); border-radius:12px; padding:12px 14px; }
-  .stat-mini .n{ font-family:'Plus Jakarta Sans', sans-serif; font-weight:500; font-size:17px; color:var(--blue-deep); }
-  .stat-mini .l{ font-size:11px; color:var(--ink-faint); margin-top:3px; }
+  .dash-main .row-top{ margin-bottom:14px; }
+  .dash-main .title{ font-size:13px; font-weight:600; color:var(--ink-dim); letter-spacing:0.02em; }
+  .service-rows{ display:flex; flex-direction:column; }
+  .service-row{ display:flex; align-items:center; gap:12px; padding:11px 0; }
+  .service-row:not(:last-child){ border-bottom:1px solid var(--line); }
+  .service-ic{ width:32px; height:32px; border-radius:9px; background:var(--sky); color:var(--blue); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .service-h{ font-size:13.5px; font-weight:600; color:var(--ink); }
+  .service-l{ font-size:11px; color:var(--ink-faint); margin-top:2px; line-height:1.4; }
 
-  .float-card{ display:flex; align-items:center; gap:10px; padding:12px 16px; font-size:13px; font-weight:600; }
+  .float-card{ display:flex; align-items:center; gap:10px; padding:12px 16px; font-size:12.5px; font-weight:600; max-width:186px; line-height:1.35; }
   .float-card .ic{ width:26px; height:26px; border-radius:50%; background:var(--mint-soft); color:var(--mint); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
   .fc-1{ top:24px; right:8px; }
   .fc-2{ bottom:40px; left:4px; }
@@ -148,8 +147,8 @@
   .process-step p{ font-size:14px; color:var(--ink-dim); line-height:1.6; margin:0; }
 
   .testimonial{ background:var(--panel); border:1px solid var(--line); border-radius:24px; padding:56px; box-shadow:var(--shadow-lg); display:grid; grid-template-columns:auto 1fr; gap:32px; align-items:start; }
-  .quote-mark{ font-family:'Plus Jakarta Sans', sans-serif; font-size:76px; color:var(--mint); line-height:1; }
-  .testimonial blockquote{ margin:0; font-size:23px; line-height:1.5; font-family:'Plus Jakarta Sans', sans-serif; font-weight:500; }
+  .quote-mark{ font-family:'Lora', serif; font-size:76px; color:var(--mint); line-height:1; }
+  .testimonial blockquote{ margin:0; font-size:23px; line-height:1.5; font-family:'Lora', serif; font-weight:500; }
   .testimonial cite{ display:block; margin-top:22px; font-style:normal; font-size:14px; color:var(--ink-faint); }
 
   .cta-band{ border-radius:28px; padding:72px 56px; text-align:center; background:linear-gradient(135deg, var(--blue-deep), var(--blue) 55%, var(--mint) 130%); color:#fff; position:relative; overflow:hidden; }
@@ -168,7 +167,10 @@
   @media (max-width:940px){
     nav{ display:none; }
     .hero .wrap{ grid-template-columns:1fr; }
-    .hero-visual{ height:400px; margin-top:20px; }
+    .hero-visual{ height:auto; margin-top:20px; display:flex; flex-direction:column; align-items:center; gap:14px; padding:8px 0 28px; }
+    .blob{ position:absolute; inset:0; }
+    .dash-card{ position:relative; z-index:1; top:auto; left:auto; right:auto; bottom:auto; width:100%; max-width:320px; }
+    .float-card{ display:inline-flex; }
     .card-grid{ grid-template-columns:1fr; }
     .card-grid-2{ grid-template-columns:1fr; }
     .process{ grid-template-columns:1fr; }
@@ -204,7 +206,7 @@
         <a href="javascript:void(0)" onclick="scrollToId('contact')" class="btn-secondary">Talk to us</a>
       </div>
       <div class="trust-row reveal">
-        <div class="trust-item"><span class="num">24+</span><span class="lbl">Years supporting practices</span></div>
+        <div class="trust-item"><span class="num">Since 2001</span><span class="lbl">Supporting practices</span></div>
         <div class="trust-item"><span class="num">3+</span><span class="lbl">PMA platforms supported</span></div>
       </div>
     </div>
@@ -222,11 +224,40 @@
         </svg>
       </div>
 
+      <div class="dash-card dash-main float">
+        <div class="row-top">
+          <span class="title">YOUR PRACTICE. CONNECTED.</span>
+        </div>
+        <div class="service-rows">
+          <div class="service-row">
+            <span class="service-ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="14" rx="2"></rect><path d="M8 21h8M12 18v3"></path></svg></span>
+            <div>
+              <div class="service-h">Practice Software</div>
+              <div class="service-l">MedEDI • Practice Perfect</div>
+            </div>
+          </div>
+          <div class="service-row">
+            <span class="service-ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="3" width="16" height="18" rx="2"></rect><path d="M9 7h6M9 11h6M9 15h3"></path></svg></span>
+            <div>
+              <div class="service-h">Hardware &amp; Setup</div>
+              <div class="service-l">Supply • Installation • Configuration</div>
+            </div>
+          </div>
+          <div class="service-row">
+            <span class="service-ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"></circle><path d="M12 8v4l3 2"></path></svg></span>
+            <div>
+              <div class="service-h">Ongoing Support</div>
+              <div class="service-l">Training • Maintenance • Technical Support</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="dash-card float-card fc-1 float-slow">
-        <span class="ic">✓</span> Backup complete
+        <span class="ic">✓</span> Supporting practices since 2001
       </div>
       <div class="dash-card float-card fc-2 float-slow">
-        <span class="ic">⚡</span> System uptime 99.9%
+        <span class="ic">⚡</span> Software • Hardware • Support
       </div>
     </div>
   </div>
