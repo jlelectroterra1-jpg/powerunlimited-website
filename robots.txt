@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://power4u.co.za/sitemap.xml
