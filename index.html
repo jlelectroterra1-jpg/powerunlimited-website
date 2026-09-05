@@ -147,9 +147,10 @@
   .process-step p{ font-size:14px; color:var(--ink-dim); line-height:1.6; margin:0; }
 
   .testimonial{ background:var(--panel); border:1px solid var(--line); border-radius:24px; padding:56px; box-shadow:var(--shadow-lg); display:grid; grid-template-columns:auto 1fr; gap:32px; align-items:start; }
-  .quote-mark{ font-family:'Lora', serif; font-size:76px; color:var(--mint); line-height:1; }
-  .testimonial blockquote{ margin:0; font-size:23px; line-height:1.5; font-family:'Lora', serif; font-weight:500; }
-  .testimonial cite{ display:block; margin-top:22px; font-style:normal; font-size:14px; color:var(--ink-faint); }
+  .promise-icon{ width:64px; height:64px; border-radius:50%; background:var(--mint-soft); color:var(--mint); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .promise-statement{ margin:0; font-family:'Lora', serif; font-weight:600; font-size:27px; line-height:1.4; color:var(--ink); }
+  .promise-support{ margin:16px 0 0; font-size:15px; line-height:1.7; color:var(--ink-dim); max-width:640px; }
+  .promise-byline{ display:block; margin-top:24px; font-size:12.5px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-faint); }
 
   .cta-band{ border-radius:28px; padding:72px 56px; text-align:center; background:linear-gradient(135deg, var(--blue-deep), var(--blue) 55%, var(--mint) 130%); color:#fff; position:relative; overflow:hidden; }
   .cta-band h2{ color:#fff; font-size:clamp(26px,3.6vw,38px); margin:0 0 16px; }
@@ -447,10 +448,13 @@
 <section>
   <div class="wrap">
     <div class="testimonial reveal">
-      <div class="quote-mark">"</div>
+      <div class="promise-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2 3 6v6c0 5 4 8.7 9 10 5-1.3 9-5 9-10V6l-9-4Z"></path><path d="m9 12 2 2 4-4"></path></svg>
+      </div>
       <div>
-        <blockquote>Placeholder — swap in a real quote from a practice you support once we have one to use.</blockquote>
-        <cite>— Practice name, specialty, town</cite>
+        <p class="promise-statement">Your practice keeps moving. So do we.</p>
+        <p class="promise-support">From software and hardware to training and ongoing technical support, Power Unlimited gives your practice one experienced team to call when you need help — backed by service since 2001.</p>
+        <span class="promise-byline">Power Unlimited &middot; Practice Solutions Since 2001</span>
       </div>
     </div>
   </div>
