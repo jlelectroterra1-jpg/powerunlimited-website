@@ -504,7 +504,7 @@
   <div class="wrap">
     <div class="section-head reveal">
       <div class="kicker">Where we are</div>
-      <h2>Based in Bloemfontein.</h2>
+      <h2>Based in Bloemfontein. Supporting practices across the Free State &amp; Northern Cape.</h2>
     </div>
     <div class="card-grid" style="grid-template-columns:1fr; max-width:420px;">
       <div class="card reveal">
@@ -529,9 +529,9 @@
   @media (max-width:900px){ .contact-grid{ grid-template-columns:1fr !important; } }
 </style>
 <section style="padding-top:0;">
-  <div class="wrap contact-grid" style="display:grid; grid-template-columns:1.2fr 0.8fr; gap:40px; align-items:start;">
+  <div class="wrap contact-grid" style="display:grid; grid-template-columns:1.2fr 0.8fr; gap:40px; align-items:stretch;">
     <div class="card reveal" style="padding:40px;">
-      <form id="contact-form" onsubmit="return handleContactSubmit(event)">
+      <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" onsubmit="return handleContactSubmit(event)">
         <div style="display:grid; gap:20px;">
           <label style="display:block;">
             <span style="display:block; font-size:13px; font-weight:600; color:var(--ink-dim); margin-bottom:6px;">Full name</span>
@@ -548,13 +548,17 @@
             </label>
             <label style="display:block;">
               <span style="display:block; font-size:13px; font-weight:600; color:var(--ink-dim); margin-bottom:6px;">Phone</span>
-              <input type="tel" name="phone" style="width:100%; padding:13px 16px; border-radius:10px; border:1.5px solid rgba(16,35,59,0.15); font-family:inherit; font-size:15px; background:#fff;">
+              <input type="tel" name="phone" required style="width:100%; padding:13px 16px; border-radius:10px; border:1.5px solid rgba(16,35,59,0.15); font-family:inherit; font-size:15px; background:#fff;">
             </label>
           </div>
           <label style="display:block;">
             <span style="display:block; font-size:13px; font-weight:600; color:var(--ink-dim); margin-bottom:6px;">How can we help?</span>
             <textarea name="message" rows="5" style="width:100%; padding:13px 16px; border-radius:10px; border:1.5px solid rgba(16,35,59,0.15); font-family:inherit; font-size:15px; background:#fff; resize:vertical;"></textarea>
           </label>
+          <input type="text" name="_gotcha" style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div id="contact-error" style="display:none; padding:14px 16px; border-radius:10px; background:#fdecea; border:1px solid #f3c6c1;">
+            <p style="margin:0; color:#a13a2f; font-size:14px;"></p>
+          </div>
           <button type="submit" class="btn-primary" style="justify-self:start; border:none; cursor:pointer;">Send message</button>
         </div>
       </form>
@@ -564,13 +568,9 @@
       </div>
     </div>
 
-    <div style="display:grid; gap:20px;">
-      <div class="card reveal">
-        <h3>Bloemfontein</h3>
-        <p style="color:var(--ink-dim);">1 Dromedaris Street<br>Dan Pienaar, Bloemfontein, 9301</p>
-      </div>
-      <div class="card reveal">
-        <h3>Direct</h3>
+    <div style="display:flex; align-items:center;">
+      <div class="card reveal" style="width:100%;">
+        <h3>Contact us directly</h3>
         <p style="color:var(--ink-dim);">Contact: Belinda Norval<br>Cell: 084 722 3818<br>Office: 051 444 4100 / 051 444 4200<br>Email: <a href="mailto:belinda@power4u.co.za" style="color:var(--blue);">belinda@power4u.co.za</a></p>
       </div>
     </div>
@@ -580,9 +580,56 @@
 <script>
 function handleContactSubmit(e){
   e.preventDefault();
-  document.getElementById('contact-form').style.display = 'none';
-  document.getElementById('contact-success').style.display = 'block';
+  var form = document.getElementById('contact-form');
+  var btn = form.querySelector('button[type="submit"]');
+
+  if (form.dataset.submitting === 'true') return false;
+
+  if (!form.checkValidity()) {
+    form.reportValidity();
+    return false;
+  }
+
+  hideContactError();
+  form.dataset.submitting = 'true';
+  btn.disabled = true;
+  var originalLabel = btn.textContent;
+  btn.textContent = 'Sending…';
+
+  fetch(form.action, {
+    method: 'POST',
+    body: new FormData(form),
+    headers: { 'Accept': 'application/json' }
+  }).then(function (response) {
+    if (response.ok) {
+      form.style.display = 'none';
+      document.getElementById('contact-success').style.display = 'block';
+    } else {
+      return response.json().catch(function () { return null; }).then(function (data) {
+        var msg = (data && data.errors && data.errors.length)
+          ? data.errors.map(function (er) { return er.message; }).join(' ')
+          : 'Something went wrong sending your message. Please try again.';
+        throw new Error(msg);
+      });
+    }
+  }).catch(function (err) {
+    var fallback = 'Something went wrong sending your message. Please try again, or contact us directly using the details alongside this form.';
+    showContactError((err && err.message) ? err.message : fallback);
+  }).finally(function () {
+    form.dataset.submitting = 'false';
+    btn.disabled = false;
+    btn.textContent = originalLabel;
+  });
+
   return false;
+}
+function showContactError(msg){
+  var el = document.getElementById('contact-error');
+  el.querySelector('p').textContent = msg;
+  el.style.display = 'block';
+}
+function hideContactError(){
+  document.getElementById('contact-error').style.display = 'none';
 }
 function scrollToContact(){
   scrollToId('contact');
